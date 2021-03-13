@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
+@font-face {
+  font-family: "ELAND_Choice_M";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/ELAND_Choice_M.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/**reset**/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+/****/
+
+.login_container {
+  background-color: rgb(241, 229, 232);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 300px;
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: 0px 8px 28px -7px rgba(186, 157, 167, 0.62);
+}
+
+.logo {
+  position: absolute;
+  top: 70px;
+  color: rgb(100, 72, 72);
+  font-family: "Abril Fatface", cursive;
+  font-size: 32px;
+  text-align: center;
+  line-height: 1;
+}
+
+.login_form {
+  margin: 20px 0;
+}
+
+.ID_input,
+.password_input,
+.submit_button {
+  display: block;
+  font-family: "ELAND_Choice_M", sans-serif;
+}
+
+.ID_input,
+.password_input {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 170px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  text-indent: 0.7em;
+}
+
+.ID_input::placeholder,
+.password_input::placeholder {
+  color: rgb(185, 183, 183);
+  font-size: 13px;
+}
+
+.ID_input:focus,
+.password_input:focus,
+.submit_button:focus {
+  outline: none;
+}
+
+.ID_input {
+  margin-bottom: 10px;
+}
+
+.password_input {
+  margin-bottom: 20px;
+}
+
+.submit_button {
+  background-color: rosybrown;
+  margin: 0 auto;
+  width: 170px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  color: seashell;
+  cursor: pointer;
+}
+
+.submit_button:hover {
+  opacity: 0.5;
+  transition: opacity 200ms;
+}
+
+.inquiry_container {
+  position: absolute;
+  bottom: 45px;
+}
+
+.inquiry,
+.join {
+  display: block;
+  font-size: 12px;
+  color: rosybrown;
+  text-align: center;
+}
+
+.inquiry:focus,
+.inquiry:hover,
+.join:focus,
+.join:hover {
+  text-decoration: underline 1px rosybrown;
+}
+
+.inquiry {
+  margin: 0 auto 5px auto;
+}
+
+.join {
+  margin-bottom: 0 auto;
+}
