@@ -307,10 +307,7 @@ function search_address() {
           extraAddr += data.bname;
         }
         // 건물명이 있고, 공동주택일 경우 추가한다.
-        if (
-          (data.apartment === "Y" || data.apartment === "N") &&
-          data.buildingName !== ""
-        ) {
+        if (data.buildingName !== "") {
           extraAddr +=
             extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
         }
@@ -330,8 +327,7 @@ function search_address() {
       // 커서를 상세주소 필드로 이동한다.
       address_detail_input.value.focus();
     },
-  }).open();
-  return true;
+  }).open({ autoClose: true });
 }
 
 ID_input.addEventListener("change", check_ID);
