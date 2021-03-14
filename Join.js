@@ -327,7 +327,7 @@ function search_address() {
       // 커서를 상세주소 필드로 이동한다.
       address_detail_input.value.focus();
     },
-  }).open({ autoClose: true });
+  }).open({ autoClose: false });
 }
 
 ID_input.addEventListener("change", check_ID);
