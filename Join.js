@@ -326,7 +326,10 @@ function search_address() {
       address_input.value = addr;
       // 커서를 상세주소 필드로 이동한다.
       address_detail_input.value.focus();
-      window.close();
+
+      if (data.userSelectedType !== "") {
+        window.close();
+      }
     },
   }).open();
 }
