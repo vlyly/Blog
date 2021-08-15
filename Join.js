@@ -50,10 +50,12 @@ const email_warning = document.getElementById("email_warning");
 const phoneNumber_warning = document.getElementById("phoneNumber_warning");
 
 const ID_pattern = /^\w*$/;
-const password_pattern = /^(?=.*?[\w])(?=.*?[\d])(?=.*?[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]).{0,20}$/;
+const password_pattern =
+  /^(?=.*?[\w])(?=.*?[\d])(?=.*?[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]).{0,20}$/;
 const name_pattern = /^[a-zA-Z가-힣]*$/;
 const number_pattern = /^\d*$/;
-const email_pattern = /^[\w]([-_\.]?[\w])*@[\w]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+const email_pattern =
+  /^[\w]([-_\.]?[\w])*@[\w]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
 function check_ID() {
   ID_length_warning.style.display = "";
@@ -143,8 +145,8 @@ function check_birthday_year() {
     return false;
   } else {
     birthday_warning.style.display = "";
+    check_valid_birthday();
   }
-  check_valid_birthday();
 }
 
 function check_birthday_month() {
@@ -153,9 +155,8 @@ function check_birthday_month() {
   if (
     birthday_month_input.value > 12 ||
     birthday_month_input.value < 1 ||
-    !number_pattern.test(birthday_month_input.value)
-    // ||
-    // birthday_month_input.value.length < 1
+    !number_pattern.test(birthday_month_input.value) ||
+    birthday_month_input.value.length < 1
   ) {
     birthday_warning.style.display = "block";
     return false;
@@ -165,8 +166,10 @@ function check_birthday_month() {
 
   if (birthday_month_input.value.length === 1) {
     birthday_month_input.value = `0${birthday_month_input.value}`;
+    check_valid_birthday();
+  } else {
+    check_valid_birthday();
   }
-  check_valid_birthday();
 }
 
 function check_birthday_day() {
@@ -175,9 +178,8 @@ function check_birthday_day() {
   if (
     birthday_day_input.value < 1 ||
     birthday_day_input.value > 31 ||
-    !number_pattern.test(birthday_day_input.value)
-    // ||
-    // birthday_day_input.value.length < 1
+    !number_pattern.test(birthday_day_input.value) ||
+    birthday_day_input.value.length < 1
   ) {
     birthday_warning.style.display = "block";
     return false;
@@ -187,11 +189,22 @@ function check_birthday_day() {
 
   if (birthday_day_input.value.length === 1) {
     birthday_day_input.value = `0${birthday_day_input.value}`;
+    check_valid_birthday();
+  } else {
+    check_valid_birthday();
   }
-  check_valid_birthday();
 }
 
 function check_valid_birthday() {
+  if (
+    !birthday_year_input.value ||
+    !birthday_month_input.value ||
+    !birthday_day_input.value
+  ) {
+    birthday_warning.style.display = "block";
+    return false;
+  }
+
   if (
     (birthday_month_input.value == 4 ||
       birthday_month_input.value == 6 ||
@@ -208,11 +221,7 @@ function check_valid_birthday() {
     return false;
   }
 
-  if (
-    birthday_year_input.value !== "" &&
-    birthday_month_input.value == 2 &&
-    birthday_day_input.value == 29
-  ) {
+  if (birthday_month_input.value == 2 && birthday_day_input.value == 29) {
     if (
       birthday_year_input.value % 4 === 0 &&
       birthday_year_input.value % 100 !== 0
@@ -223,15 +232,8 @@ function check_valid_birthday() {
       return false;
     }
   }
-  if (
-    !birthday_year_input.value ||
-    !birthday_month_input.value ||
-    !birthday_day_input.value
-  ) {
-    return false;
-  } else {
-    return true;
-  } //제출시 공란 확인용
+
+  return true;
 }
 
 function check_gender() {
@@ -255,11 +257,9 @@ function check_email() {
 }
 
 function check_phoneNumber() {
-  if (
-    !number_pattern.test(phoneNumber_first_input.value) ||
-    !number_pattern.test(phoneNumber_second_input.value) ||
-    !number_pattern.test(phoneNumber_third_input.value)
-  ) {
+  const phoneNumber = event.target.value;
+
+  if (phoneNumber === "" || number_pattern.test(phoneNumber) === false) {
     phoneNumber_warning.style.display = "block";
     return false;
   } else {
@@ -267,13 +267,13 @@ function check_phoneNumber() {
   }
 
   if (
-    !phoneNumber_first_input.value ||
-    !phoneNumber_second_input.value ||
-    !phoneNumber_third_input.value
+    phoneNumber_first_input.value &&
+    phoneNumber_second_input.value &&
+    phoneNumber_third_input.value
   ) {
-    return false;
+    return true;
   } else {
-    return true; //제출시 공란 확인용
+    return false; //제출시 공란 확인용
   }
 }
 
@@ -307,7 +307,7 @@ function search_address() {
           extraAddr += data.bname;
         }
         // 건물명이 있고, 공동주택일 경우 추가한다.
-        if (data.buildingName !== "") {
+        if (data.buildingName !== "" && data.apartment === "Y") {
           extraAddr +=
             extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
         }
@@ -324,10 +324,8 @@ function search_address() {
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
       address_postcode_input.value = data.zonecode;
       address_input.value = addr;
-      // 커서를 상세주소 필드로 이동한다.
-      address_detail_input.value.focus();
-    },
-  }).open();
+    }
+  }).open({autoClose: true;});
 }
 
 ID_input.addEventListener("change", check_ID);
