@@ -50,10 +50,12 @@ const email_warning = document.getElementById("email_warning");
 const phoneNumber_warning = document.getElementById("phoneNumber_warning");
 
 const ID_pattern = /^\w*$/;
-const password_pattern = /^(?=.*?[\w])(?=.*?[\d])(?=.*?[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]).{0,20}$/;
+const password_pattern =
+  /^(?=.*?[\w])(?=.*?[\d])(?=.*?[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]).{0,20}$/;
 const name_pattern = /^[a-zA-Z가-힣]*$/;
 const number_pattern = /^\d*$/;
-const email_pattern = /^[\w]([-_\.]?[\w])*@[\w]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+const email_pattern =
+  /^[\w]([-_\.]?[\w])*@[\w]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
 function check_ID() {
   ID_length_warning.style.display = "";
@@ -324,8 +326,8 @@ function search_address() {
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
       address_postcode_input.value = data.zonecode;
       address_input.value = addr;
-    }
-  }).open({autoClose: true;});
+    },
+  }).open({ autoClose: true });
 }
 
 ID_input.addEventListener("change", check_ID);
