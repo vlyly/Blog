@@ -1,5 +1,5 @@
 <h2>✍️회원가입✍️</h2>
-회원가입시 필요한 정보를 입력받기<br>
+회원가입시 필요한 정보를 입력받기<strong>(Internet Explorer 미지원)</strong><br>
 
 <h3>목차</h3>
 l. 목표<br>
